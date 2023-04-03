@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "dev": "concurrently \"nodemon -q src/index.ts\" \"jest --watch\"",
+    "dev": "concurrently \"nodemon -q src/app/index.ts\" \"jest --watch\"",
     "build": "rimraf ./dist && npx tsc --project tsconfig.build.json",
-    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/index.js"
+    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/app/index.js"
   },
   "repository": {
     "type": "git",
