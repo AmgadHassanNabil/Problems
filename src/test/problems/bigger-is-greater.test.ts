@@ -17,6 +17,6 @@ describe('Bigger is Greater', () =>
     it('Performant', () =>
     {
         expect(biggerIsGreater("fedcbabcd")).toBe("fedcbabdc");
-        // expect(biggerIsGreater("abcdefghjijrtfgsdfgasd")).toBe("");
+        expect(biggerIsGreater("abcdefghjijrtfgsdfgasd")).toBe("abcdefghjijrtfgsdfgdas");
     });
 });

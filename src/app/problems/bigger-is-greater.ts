@@ -1,5 +1,36 @@
 export function biggerIsGreater(word: string): string | null
 {
+    const letters = word.split('')
+    // Find non-increasing suffix
+    let i = letters.length - 1;
+    while (i > 0 && letters[i - 1] >= letters[i])
+        i--;
+
+    if (i <= 0)
+        return null;
+
+    // Find the rightmost successor to pivot in the suffix
+    let j = letters.length - 1;
+    while (letters[j] <= letters[i - 1])
+        j--;
+
+    // Swap the pivot with the rightmost character
+    [letters[i - 1], letters[j]] = [letters[j], letters[i - 1]];
+
+    // Reverse suffix
+    j = letters.length - 1;
+    while (i < j)
+    {
+        [letters[i], letters[j]] = [letters[j], letters[i]];
+        i++;
+        j--;
+    }
+
+    return letters.join('');
+}
+
+export function biggerIsGreater_worsePerformance(word: string): string | null
+{
     const possibleStrings = [... new Set(allPossibleStrings([...word]))];
     let result: string | null = null;
     for (const possibleString of possibleStrings)
