@@ -1,29 +1,29 @@
 export function gridSearch(grid: number[][], pattern: number[][]): boolean
 {
-    let patternRow = 0, patternCol = 0, startCol = 0;
     for (let row = 0; row < grid.length; row++)
     {
-        for (let col = startCol; col < grid[0].length; col++)
+        for (let col = 0; col < grid[0].length; col++)
         {
-            if (grid[row][col] === pattern[patternRow][patternCol])
+            if (grid[row][col] === pattern[0][0])
             {
-                patternCol++;
-
-                if (patternCol === pattern[0].length)
+                let patternRow = 0, patternCol = 0;
+                outerloop: for (patternRow = 0; patternRow < pattern.length; patternRow++)
                 {
-                    patternRow++;
-                    if (patternRow === pattern.length && patternCol === pattern[0].length)
-                        return true;
-                    // startCol = grid.length - patternCol - pattern.length;
-                    startCol = col - (patternCol - 1);
-                    patternCol = 0
-                    break;
+                    for (patternCol = 0; patternCol < pattern[0].length; patternCol++)
+                    {
+                        if (grid[row + patternRow][col + patternCol] !== pattern[patternRow][patternCol])
+                            break outerloop;
+                    }
                 }
-
+                if (patternRow === pattern.length && patternCol === pattern[0].length)
+                    return true;
             }
-            else
-                patternRow = patternCol = startCol = 0;
         }
     }
     return false;
+}
+
+export function gridSearchText(grid: string[], pattern: string[]): boolean
+{
+    return gridSearch(grid.map(a => a.split("").map(b => +b)), pattern.map(a => a.split("").map(b => +b)));
 }

@@ -45,6 +45,21 @@ describe('Grid Search', () =>
             ]
         )).toBe(true);
     });
+    it('Can Find - does not skip row if not found', () =>
+    {
+        expect(gridSearch(
+            [
+                [1, 2, 3, 4, 1, 2],
+                [5, 6, 1, 2, 1, 2],
+                [1, 2, 3, 6, 3, 4],
+                [7, 8, 1, 2, 8, 8]
+            ],
+            [
+                [1, 2],
+                [3, 4]
+            ]
+        )).toBe(true);
+    });
     it('Can Find - left bottom', () =>
     {
         expect(gridSearch(
@@ -86,7 +101,7 @@ describe('Grid Search', () =>
             ]
         )).toBe(true);
     });
-    it('Can Find Performant', () =>
+    it('Can Find - Performant', () =>
     {
         expect(gridSearch(
             [
@@ -107,6 +122,28 @@ describe('Grid Search', () =>
                 [3, 5, 3, 0]
             ]
         )).toBe(true);
+    });
+
+
+    it('Can Find - All similar', () =>
+    {
+        expect(gridSearch(
+            [
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
+            ],
+            [
+                [1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 0]
+            ]
+        )).toBe(true)
     });
 
     it('Can not Find', () =>
